@@ -1,0 +1,35 @@
+.track-booking {
+    padding: 40px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.track-booking input {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.track-booking button {
+    padding: 10px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.track-booking button:hover {
+    background-color: #e64a19;
+}
+
+.booking-status {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
