@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const BookingRouter = require("./routes/bookingRoutes.js");
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -12,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI)
    .then(() => console.log("MongoDB connected"))
    .catch((err) => console.error(err));
 
@@ -20,6 +21,8 @@ mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopol
 app.get('/', (req, res) => {
    res.send('Server is running');
 });
+
+app.use('/api/bookings', BookingRouter);
 
 // Listen on a port
 const PORT = process.env.PORT || 5000;

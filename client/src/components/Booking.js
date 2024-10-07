@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import axios
 import '../styles/Booking.css';
 
 const Booking = () => {
     const [formData, setFormData] = useState({
-        name: '',
+        customerName: '',
         email: '',
         carModel: '',
         serviceType: ''
@@ -17,9 +18,28 @@ const Booking = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Booking submitted', formData);
+        
+        try {
+            const response = await axios.post('https://localhost:5000/api/bookings', formData, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            console.log('Booking created', response.data);
+            // Reset form or handle success message as needed
+            setFormData({
+                customerName: '',
+                email: '',
+                carModel: '',
+                serviceType: ''
+            });
+        } catch (error) {
+            console.error('Error creating booking:', error.response?.data || error.message);
+            // Optionally handle the error (e.g., display a message to the user)
+        }
     };
 
     return (
@@ -27,7 +47,7 @@ const Booking = () => {
             <h2>Book a Service</h2>
             <form onSubmit={handleSubmit}>
                 <label>Name:</label>
-                <input type="text" name="name" value={formData.name} onChange={handleInputChange} required />
+                <input type="text" name="customerName" value={formData.customerName} onChange={handleInputChange} required />
 
                 <label>Email:</label>
                 <input type="email" name="email" value={formData.email} onChange={handleInputChange} required />

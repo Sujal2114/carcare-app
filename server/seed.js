@@ -9,7 +9,7 @@ const services = [
 
 const seedDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
+        await mongoose.connect("mongodb://localhost:27017/carcare", {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
